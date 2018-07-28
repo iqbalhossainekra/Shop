@@ -103,6 +103,32 @@ public class serviceClass extends ConnectionClass {
             e.printStackTrace();
         }
     }
+    
+    /**
+     *
+     * @param product_name
+     * @return
+     */
+    public int getValueFromDB(String product_name) {
+
+        this.getConnection();
+        String sql = "select cost, sell_cost from product where product_name=?";
+
+        try
+        {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1,product_name);
+            rs = ps.executeQuery();
+            
+
+        }
+        catch (SQLException e)
+        {
+        }
+        return 0;
+        
+   
 
     
+}
 }
