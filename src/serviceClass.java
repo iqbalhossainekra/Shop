@@ -11,15 +11,16 @@ import java.sql.SQLException;
  */
 public class serviceClass extends ConnectionClass {
     
-    public void insertToDb(String product_name, String cost, String type)
+    public void insertToDb(String product_name, String cost, String type, String sell)
     {
         this.getConnection();
-        String sql = "INSERT INTO user(product_name, cost, type) VALUES (?,?,?)";
+        String sql = "INSERT INTO product(product_name, cost, type, sell_cost) VALUES (?,?,?,?)";
         try {
            ps = connection.prepareStatement(sql);
            ps.setString(1, product_name);
            ps.setString(2, cost);
            ps.setString(3, type);
+           ps.setString(4, sell);
            ps.executeUpdate();
            ps.close();
            
