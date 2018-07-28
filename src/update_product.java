@@ -45,6 +45,11 @@ public class update_product extends javax.swing.JFrame {
         jLabel3.setText("Type");
 
         jButton1.setText("Update");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Sell cost");
 
@@ -96,6 +101,17 @@ public class update_product extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        serviceClass sClass = new serviceClass();
+        sClass.updateTable(jTextField1.getText(),jTextField2.getText(),jTextField3.getText(), jTextField4.getText());
+        
+        new message().setVisible(true);
+       
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -1,4 +1,5 @@
 import java.sql.SQLException;
+import jdk.nashorn.internal.ir.CatchNode;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -64,6 +65,31 @@ public class serviceClass extends ConnectionClass {
         return null;
     }
 
-   
+    public void updateTable(String product_name, String cost, String type, String sell_cost)
+    {
+        this.getConnection();
+        String sql = "update product set product_name=?, cost=?, type=? ,sell_cost=?";
+    
+    
+    try {
+
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, product_name);
+            ps.setString(2, cost);
+            ps.setString(3, type);
+            ps.setString(4, sell_cost);
+            ps.executeUpdate();
+            ps.close();
+            connection.close();
+
+
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    
+}
+
     
 }
