@@ -91,5 +91,18 @@ public class serviceClass extends ConnectionClass {
     
 }
 
+    void deleteData(String product_name) {
+         String sql = "select * from 'product' where 'product_name'=?";
+         
+         try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, product_name);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     
 }
