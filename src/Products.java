@@ -14,6 +14,9 @@ public class Products {
     private String type;
     private String sell_cost;
 
+    public Products() {
+    }
+
     public Products(String product_name, String cost, String type, String sell_cost) {
         this.product_name = product_name;
         this.cost = cost;

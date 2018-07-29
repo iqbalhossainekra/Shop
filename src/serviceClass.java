@@ -112,10 +112,10 @@ public class serviceClass extends ConnectionClass {
      * @param product_name
      * @return
      */
-    public int getValueFromDB(String product_name) {
+    public ArrayList<Products> getValueFromDB(String product_name) throws SQLException {
 
         this.getConnection();
-        String sql = "select cost, sell_cost from product where product_name=?";
+        String sql = "select * from product where product_name=?";
 
         try
         {
@@ -128,7 +128,11 @@ public class serviceClass extends ConnectionClass {
         catch (SQLException e)
         {
         }
-        return 0;
+        ArrayList<Products> arrProduct = new ArrayList();
+            while (rs.next()) {
+                arrProduct.add(new Products(rs.getString("product_name"), rs.getString("cost"),rs.getString("type"), rs.getString("sell_cost")));        
+            }
+    return arrProduct;
     }
         
     public ArrayList <Products> getListproduct() throws SQLException{
