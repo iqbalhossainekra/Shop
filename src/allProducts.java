@@ -1,5 +1,8 @@
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -17,7 +20,7 @@ public class allProducts extends javax.swing.JFrame {
     /**
      * Creates new form allProducts
      */
-    public allProducts() {
+    public allProducts() throws SQLException {
         initComponents();
         
         serviceClass sClass = new serviceClass();
@@ -31,8 +34,13 @@ public class allProducts extends javax.swing.JFrame {
         
         ArrayList<Products> listproduct = sClass.getListproduct();
         for(int i=0; i<listproduct.size(); i++)
-            sClass.addRow(new Object[]{listproduct.get(i).getproduct_name(i)});
-            }
+            defaultTableModel.addRow(new Object[]{listproduct.get(i).getProduct_name(), listproduct.get(i).getCost(),listproduct.get(i).getType(),listproduct.get(i).getSell_cost()});
+            
+    jTable1.setModel(defaultTableModel);
+    
+    }
+    
+            
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -111,7 +119,11 @@ public class allProducts extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new allProducts().setVisible(true);
+                try {
+                    new allProducts().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(allProducts.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

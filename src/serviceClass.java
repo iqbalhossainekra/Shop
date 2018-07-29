@@ -147,12 +147,11 @@ public class serviceClass extends ConnectionClass {
             Logger.getLogger(serviceClass.class.getName()).log(Level.SEVERE, null, ex);
         }
             
-            ArrayList<Products>arrProduct = new ArrayList();
+            ArrayList<Products> arrProduct = new ArrayList();
             while (rs.next()) {
-                arrProduct.add(rs.getString("product_name"), rs.getString("cost"),rs.getString("type"), rs.getString("sell_cost"));        
+                arrProduct.add(new Products(rs.getString("product_name"), rs.getString("cost"),rs.getString("type"), rs.getString("sell_cost")));        
             }
-        }
-    return arrproduct;
-}
-
+    return arrProduct;    
+    }
+    
 }
