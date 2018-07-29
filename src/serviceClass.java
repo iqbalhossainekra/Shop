@@ -1,4 +1,7 @@
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import jdk.nashorn.internal.ir.CatchNode;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -126,9 +129,30 @@ public class serviceClass extends ConnectionClass {
         {
         }
         return 0;
+    }
         
-   
-
-    
+    public ArrayList <Products> getListproduct() throws SQLException{
+        
+        this.getConnection();
+        String sql = "select * from product";
+        
+        try {
+            ps = connection.prepareStatement(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(serviceClass.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            rs = ps.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(serviceClass.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            ArrayList<Products>arrProduct = new ArrayList();
+            while (rs.next()) {
+                arrProduct.add(rs.getString("product_name"), rs.getString("cost"),rs.getString("type"), rs.getString("sell_cost"));        
+            }
+        }
+    return arrproduct;
 }
+
 }
